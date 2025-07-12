@@ -1,9 +1,9 @@
 <template>
-  <footer class="footer-map" id="contact">
-    <div class="footer-container">
-      <div class="footer-map-left">
+  <footer class="site-footer">
+    <div class="container footer-main-content">
+      <div class="footer-column map-container">
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.9015848529367!2d106.74503797441584!3d-6.14207916024976!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f72d42123f03%3A0xc3b2e77b0c3f5d1!2sRuko%20Cordoba%20Blok%20G%20No.3%2C%20Pantai%20Indah%20Kapuk%2C%20Jakarta%20Utara%2C%20DKI%20Jakarta!5e0!3m2!1sen!2sid!4v1700000000000!5m2!1sen!2sid"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.658399581729!2d101.44199967591822!3d0.4965825633939626!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31d5a9a5435af757%3A0x4505a7644917a802!2sUniversitas%20Islam%20Riau!5e0!3m2!1sen!2sid!4v1720812739556!5m2!1sen!2sid"
           width="100%"
           height="100%"
           style="border:0;"
@@ -13,271 +13,213 @@
         ></iframe>
       </div>
 
-      <div class="footer-map-right">
-        <div class="contact-wrapper">
-          <h3>LOKASI BUCKET MART</h3>
-
-          <div class="location-group">
-            <strong>Bucket Mart Dyndaa</strong>
-            <p>
-              Jl.Karya Bersama<br />
-              Kota Pekanbaru, Marpoyan Damai
-            </p>
-            <ul class="contact-list">
-              <li><i class="fas fa-envelope"></i> <a href="mailto:support@bucketmart.com">support@bucketmart.com</a></li>
-              <li><i class="fas fa-phone"></i> P: (021) 569 45795</li>
-              <li><i class="fab fa-whatsapp"></i> W: 0818-0608-8460</li>
-              <li><i class="fab fa-whatsapp"></i> W: 0878-7903-8018</li>
-            </ul>
+      <div class="footer-column info-grid-container">
+        <div class="info-block">
+          <h4>💐 Bucket Mart</h4>
+          <p class="about-text">
+            Bucket Mart membantu kebutuhan Anda untuk memperoleh dan mengirimkan bunga secara cepat dan mudah.
+          </p>
+          <div class="social-icons">
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="mailto:support@bucketmart.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
           </div>
+        </div>
 
-          <div class="location-group">
-            <strong>Bucket Mart Dyloka</strong>
-            <p>Jl.Rumah Jagan No.10, Indragiri  Hulu</p>
-            <ul class="contact-list">
-              <li><i class="fab fa-whatsapp"></i> W: 0813-7219-3813</li>
-            </ul>
+        <div class="info-block">
+          <h4>Layanan Online</h4>
+          <div class="service-hours">
+            <p><strong>Senin - Jumat:</strong> 08.00 - 21.00 WIB</p>
+            <p><strong>Sabtu:</strong> 09.00 - 17.00 WIB</p>
           </div>
+        </div>
+        
+        <div class="info-block">
+          <h4>Pelanggan</h4>
+          <ul class="footer-links">
+            <li><router-link to="/payment-confirmation">Konfirmasi Pembayaran</router-link></li>
+            <li><router-link to="/track-order">Lacak Pesanan</router-link></li>
+            <li><router-link to="/contact">Hubungi Kami</router-link></li>
+          </ul>
+        </div>
 
-          <div class="location-group">
-            <strong>Jam Operasional</strong>
-            <p>
-              Senin - Sabtu, 08.00 - 22.00<br />
-              Minggu, 10.00 - 17.00
-            </p>
-          </div>
+        <div class="info-block">
+          <h4>Bantuan</h4>
+          <ul class="footer-links">
+            <li><router-link to="/faq">Pertanyaan Umum</router-link></li>
+            <li><router-link to="/terms-of-service">Ketentuan Layanan</router-link></li>
+            <li><router-link to="/privacy-policy">Kebijakan Privasi</router-link></li>
+          </ul>
         </div>
       </div>
     </div>
 
     <div class="footer-bottom">
-      <p>© 2025 Bucket Mart created by Sri Adinda. All rights reserved.</p>
+      <div class="container bottom-container">
+        <p class="copyright">© 2025 Bucket Mart Created By Sri Adinda All rights reserved</p>
+        <div class="extra-links">
+          <router-link to="/florist-partner">Florist Partner</router-link>
+          <router-link to="/corporate-customer">Corporate Customer</router-link>
+          <router-link to="/career">Karir</router-link>
+        </div>
+      </div>
     </div>
+
+    <a href="https://wa.me/6281806088460" target="_blank" rel="noopener noreferrer" class="whatsapp-fab" aria-label="Chat on WhatsApp">
+      <i class="fab fa-whatsapp"></i>
+    </a>
   </footer>
 </template>
 
-<script>
-export default {
-  name: "Footer",
-};
+<script setup>
+// Tidak ada script yang dibutuhkan untuk komponen ini
 </script>
 
 <style scoped>
-/* Import Font Awesome jika Anda belum memilikinya secara global */
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
-/* Import Google Font - contoh: Poppins atau Open Sans */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-
-
-/* Gaya utama untuk footer */
-.footer-map {
-  background-color: #ffffff; /* Putih bersih */
-  color: #333;
+.site-footer {
+  background-color: var(--secondary-color, #c49a9a);
+  color: white;
+  padding-top: 4rem;
   margin-top: auto;
-  font-family: 'Poppins', sans-serif; /* Font yang lebih modern dan mudah dibaca */
-  border-top: 1px solid #e0e0e0;
-  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05); /* Sedikit bayangan untuk mengangkat footer */
+  font-family: 'Poppins', sans-serif;
 }
-
-/* Kontainer untuk peta dan info */
-.footer-container {
+.footer-main-content {
   display: flex;
   flex-wrap: wrap;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 2rem 1rem; /* Tambahkan padding agar tidak terlalu mepet tepi */
-  gap: 2rem; /* Memberi jarak antar kolom */
+  gap: 2rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
-
-/* Kolom kiri (peta) */
-.footer-map-left {
+.footer-column {
   flex: 1;
   min-width: 320px;
-  min-height: 450px; /* Menjamin tinggi minimum */
-  border-radius: 8px; /* Sudut sedikit membulat */
-  overflow: hidden; /* Penting untuk radius di iframe */
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Bayangan lebih jelas untuk peta */
 }
-
-.footer-map-left iframe {
-  display: block;
-  height: 100%;
-  width: 100%;
+.map-container {
+  min-height: 400px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
 }
-
-/* Kolom kanan (info kontak) */
-.footer-map-right {
-  flex: 1;
-  min-width: 320px;
-  display: flex; /* Mengaktifkan flexbox */
-  align-items: flex-start; /* Mengatur item di awal (atas) secara vertikal */
-  justify-content: center; /* Horizontal tengah */
-  padding: 1rem 0; /* Sesuaikan padding */
+.info-grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-content: flex-start;
 }
-
-.contact-wrapper {
-  max-width: 400px;
-  width: 100%; /* Memastikan wrapper memenuhi lebar max-width */
-  text-align: left; /* Default text alignment */
-}
-
-.footer-map-right h3 {
-  margin-top: 0;
-  margin-bottom: 2.5rem; /* Jarak lebih besar */
-  font-size: 1.8rem; /* Ukuran font lebih besar */
-  font-weight: 700; /* Lebih tebal */
-  color: #1a1a1a;
-  position: relative; /* Untuk underline efek */
-  padding-bottom: 0.5rem;
-}
-
-/* Efek underline untuk judul */
-.footer-map-right h3::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 60px; /* Lebar underline */
-  height: 4px; /* Ketebalan underline */
-  background-color: #007bff; /* Warna biru */
-  border-radius: 2px;
-}
-
-
-.location-group {
-  margin-bottom: 2rem; /* Jarak antar grup info */
-  padding-bottom: 1rem; /* Padding di bawah setiap grup */
-  border-bottom: 1px dashed #eee; /* Garis putus-putus samar */
-}
-
-.location-group:last-child {
-  margin-bottom: 0;
-  border-bottom: none; /* Tidak ada border di grup terakhir */
-}
-
-.location-group strong {
-  font-size: 1.2rem; /* Ukuran font lebih besar */
+.info-block h4 {
+  font-size: 1rem;
   font-weight: 600;
-  color: #222; /* Warna lebih gelap */
-  display: block; /* Agar mengambil baris baru */
-  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+  position: relative;
+  letter-spacing: 0.5px;
 }
-
-.location-group p {
-  margin: 0.5rem 0;
-  line-height: 1.8; /* Jarak baris lebih lega */
-  color: #555;
+.info-block h4::after {
+  content: '';
+  display: block;
+  width: 30px;
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.7);
+  margin-top: 0.5rem;
 }
-
-.contact-list {
+.info-block p, .info-block li {
+  font-size: 0.9rem;
+  line-height: 1.8;
+  opacity: 0.9;
+}
+.about-text {
+  margin-bottom: 1.5rem;
+}
+.social-icons {
+  display: flex;
+  gap: 1rem;
+}
+.social-icons a {
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.social-icons a:hover {
+  background-color: white;
+  color: var(--secondary-color, #c49a9a);
+  transform: translateY(-2px);
+}
+.footer-links {
   list-style: none;
   padding: 0;
-  margin: 1rem 0 0 0; /* Sesuaikan margin */
-}
-
-.contact-list li {
-  margin-bottom: 0.8rem; /* Jarak antar item daftar */
-  color: #555;
-  display: flex; /* Untuk sejajarkan ikon dan teks */
-  align-items: center; /* Tengah secara vertikal */
-}
-
-.contact-list a {
-  color: #007bff;
-  text-decoration: none;
-  transition: color 0.3s ease-in-out; /* Transisi lebih halus */
-}
-
-.contact-list a:hover {
-  color: #0056b3;
-  text-decoration: underline; /* Tambahkan underline saat hover */
-}
-
-.contact-list i {
-  margin-right: 12px; /* Jarak lebih besar */
-  color: #888;
-  width: 20px; /* Agar ikon sejajar */
-  text-align: center;
-  font-size: 1.1rem; /* Ukuran ikon sedikit lebih besar */
-}
-
-/* Baris copyright di bagian bawah */
-.footer-bottom {
-  background-color: #f8f9fa;
-  text-align: center;
-  padding: 1.5rem 2rem;
-  font-size: 0.95rem; /* Ukuran font sedikit lebih besar */
-  color: #6c757d;
-  border-top: 1px solid #e0e0e0;
-  letter-spacing: 0.5px; /* Sedikit spasi antar huruf */
-}
-
-.footer-bottom p {
   margin: 0;
 }
-
-/* Desain Responsif */
-@media (max-width: 820px) {
-  .footer-container {
+.footer-links li {
+  margin-bottom: 0.75rem;
+}
+.footer-links a {
+  color: white;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+.footer-links a:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+.footer-bottom {
+  padding: 1.5rem 0;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.bottom-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.extra-links a {
+  color: white;
+  text-decoration: none;
+  margin-left: 1.5rem;
+  opacity: 0.8;
+}
+.whatsapp-fab {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background-color: #25D366;
+  color: white;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 2.2rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  z-index: 999;
+  transition: transform 0.3s ease;
+}
+.whatsapp-fab:hover {
+  transform: scale(1.1);
+}
+@media (max-width: 992px) {
+  .footer-main-content {
     flex-direction: column;
-    padding: 1.5rem 1rem; /* Sesuaikan padding untuk mobile */
-  }
-
-  .footer-map-left {
-    min-height: 300px; /* Ketinggian peta lebih pendek di mobile */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08); /* Bayangan lebih ringan */
-  }
-
-  .footer-map-right {
-    padding: 1rem; /* Sesuaikan padding */
-    align-items: center; /* Tengah secara vertikal untuk keseluruhan blok */
-  }
-
-  .contact-wrapper {
-    margin: 0 auto;
-    text-align: center; /* Tengah semua teks di mobile */
-  }
-
-  .footer-map-right h3 {
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-
-  .footer-map-right h3::after {
-    left: 50%; /* Tengah underline */
-    transform: translateX(-50%); /* Tengah underline */
-  }
-
-  .location-group {
-    text-align: center;
-    padding-bottom: 1.5rem;
-  }
-
-  .location-group strong {
-    text-align: center;
-  }
-
-  .contact-list {
-    display: block; /* Kembalikan ke block untuk mobile */
-    text-align: center; /* Tengah daftar kontak */
-    margin-top: 1rem;
-    padding-left: 0; /* Pastikan tidak ada padding tambahan */
-  }
-
-  .contact-list li {
-    justify-content: center; /* Tengah ikon dan teks di list */
   }
 }
-
-@media (max-width: 480px) {
-  .footer-map-right h3 {
-    font-size: 1.6rem;
+@media (max-width: 576px) {
+  .info-grid-container {
+    grid-template-columns: 1fr;
   }
-  .location-group strong {
-    font-size: 1.1rem;
+  .bottom-container {
+    flex-direction: column;
+    text-align: center;
   }
-  .footer-map-left {
-    min-height: 250px;
+  .extra-links a {
+    margin: 0 0.5rem;
   }
 }
 </style>

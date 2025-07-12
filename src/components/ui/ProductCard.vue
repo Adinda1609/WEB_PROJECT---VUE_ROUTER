@@ -1,165 +1,165 @@
 <template>
-  <article class="product-card">
-    <div class="card-image">
+  <div class="product-card">
+    <div class="product-image-container">
+      <div v-if="product.originalPrice" class="discount-badge">
+        -{{ discountPercentage }}%
+      </div>
       <img :src="product.image" :alt="product.name" class="product-image">
-      <span class="card-badge" v-if="product.badge">{{ product.badge }}</span>
+      <div class="overlay">
+        <button class="add-to-cart-btn" @click.stop="$emit('addToCart', product)">
+          Add to Cart
+        </button>
+      </div>
     </div>
-    
-    <div class="card-content">
-      <h3>{{ product.name }}</h3>
-      <p class="product-description">{{ product.description }}</p>
-      
-      <div class="price-section">
-        <span class="price">{{ formatPrice(product.price) }}</span>
-        <span class="old-price" v-if="product.oldPrice">
-          {{ formatPrice(product.oldPrice) }}
+    <div class="product-info">
+      <span class="product-category">{{ product.category }}</span>
+      <h3 class="product-name">{{ product.name }}</h3>
+      <div class="product-pricing">
+        <span v-if="product.originalPrice" class="original-price">
+          Rp{{ product.originalPrice.toLocaleString('id-ID') }}
+        </span>
+        <span class="current-price">
+          Rp{{ product.price.toLocaleString('id-ID') }}
         </span>
       </div>
-      
-      <button 
-        class="add-to-cart-btn"
-        @click.stop="$emit('add-to-cart', product)"
-      >
-        <span class="icon">🛒</span>
-        <span>Add to Cart</span>
-      </button>
     </div>
-  </article>
+  </div>
 </template>
 
 <script setup>
-defineProps({
+import { computed } from 'vue';
+
+const props = defineProps({
   product: {
     type: Object,
-    required: true
+    required: true,
+  },
+});
+
+defineEmits(['addToCart']);
+
+// Menghitung persentase diskon secara otomatis
+const discountPercentage = computed(() => {
+  if (!props.product.originalPrice || !props.product.price) {
+    return 0;
   }
-})
-
-defineEmits(['add-to-cart'])
-
-const formatPrice = (price) => {
-  return new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD'
-  }).format(price)
-}
+  const discount = ((props.product.originalPrice - props.product.price) / props.product.originalPrice) * 100;
+  return Math.round(discount);
+});
 </script>
 
 <style scoped>
 .product-card {
-  background: white;
-  border-radius: 16px;
+  background-color: white;
+  border: 1px solid #f0e9e9;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(218, 165, 180, 0.15);
   transition: all 0.3s ease;
   cursor: pointer;
-  position: relative;
-  display: flex;
-  flex-direction: column;
 }
 
 .product-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(218, 165, 180, 0.25);
+  box-shadow: 0 8px 25px rgba(218, 165, 180, 0.2);
 }
 
-.card-image {
+.product-image-container {
   position: relative;
-  height: 200px;
   overflow: hidden;
 }
 
 .product-image {
   width: 100%;
-  height: 100%;
+  height: 280px;
   object-fit: cover;
-  transition: transform 0.5s ease;
+  display: block;
 }
 
-.product-card:hover .product-image {
-  transform: scale(1.05);
-}
-
-.card-badge {
+/* Badge Diskon */
+.discount-badge {
   position: absolute;
-  top: 12px;
-  right: 12px;
-  background: linear-gradient(45deg, #f48fb1, #c49a9a);
+  top: 15px;
+  left: 15px;
+  background-color: var(--secondary-color, #c49a9a);
   color: white;
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  box-shadow: 0 3px 8px rgba(244, 143, 177, 0.3);
-}
-
-.card-content {
-  padding: 1.25rem;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.card-content h3 {
-  font-size: 1.1rem;
-  color: #5d4e75;
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-}
-
-.product-description {
-  color: #7a6b83;
-  font-size: 0.9rem;
-  margin-bottom: 1rem;
-  line-height: 1.5;
-  flex-grow: 1;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.price-section {
-  margin-bottom: 1rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.price {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: #c49a9a;
-}
-
-.old-price {
-  font-size: 0.9rem;
-  color: #999;
-  text-decoration: line-through;
-}
-
-.add-to-cart-btn {
-  width: 100%;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  background: linear-gradient(45deg, #dab4b4, #c49a9a);
-  color: white;
-  border: none;
-  padding: 0.75rem;
-  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  z-index: 2;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Overlay dan Tombol Add to Cart */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.product-card:hover .overlay {
+  opacity: 1;
+}
+.add-to-cart-btn {
+  background-color: white;
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+  padding: 0.7rem 1.5rem;
+  border-radius: 50px;
   font-weight: 600;
   cursor: pointer;
+  transform: translateY(20px);
   transition: all 0.3s ease;
-  margin-top: auto; /* Mendorong tombol ke bawah */
+}
+.product-card:hover .add-to-cart-btn {
+  transform: translateY(0);
 }
 
-.add-to-cart-btn:hover {
-  background: linear-gradient(45deg, #c49a9a, #b8888a);
-  transform: translateY(-2px);
+/* Info Produk */
+.product-info {
+  padding: 1rem;
+  text-align: center;
 }
-
-.add-to-cart-btn .icon {
+.product-category {
+  font-size: 0.75rem;
+  color: #aaa;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.product-name {
   font-size: 1.1rem;
+  font-weight: 500;
+  margin: 0.5rem 0;
+  color: var(--primary-color);
+}
+.product-pricing {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+/* Harga Coret */
+.original-price {
+  font-size: 0.9rem;
+  color: #aaa;
+  text-decoration: line-through;
+}
+.current-price {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-color);
 }
 </style>

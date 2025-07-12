@@ -17,8 +17,11 @@
       </nav>
 
       <div class="nav-actions">
-        <button @click="cart.toggleCart" class="cart-button">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <button v-if="auth.isAuthenticated" class="action-button user-button">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        </button>
+        <button @click="cart.toggleCart" class="action-button cart-button">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
             <line x1="3" y1="6" x2="21" y2="6"></line>
             <path d="M16 10a4 4 0 0 1-8 0"></path>
@@ -58,20 +61,17 @@ const handleLogout = () => {
 </script>
 
 <style scoped>
-/* Ganti font di file CSS global atau index.html Anda, contoh:
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
-body { font-family: 'Poppins', sans-serif; } */
-
+/* Pastikan Anda sudah mengimpor font seperti 'Poppins' di file CSS utama Anda */
 .navbar {
-  background-color: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(12px);
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
   padding: 1rem 0;
   position: fixed;
   width: 100%;
   top: 0;
   z-index: 100;
-  border-bottom: 1px solid rgba(0,0,0,0.05);
-  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  border-bottom: 1px solid rgba(0,0,0,0.07);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
 .nav-container {
   display: flex;
@@ -82,30 +82,37 @@ body { font-family: 'Poppins', sans-serif; } */
   font-weight: 600;
   font-size: 1.5rem;
   color: var(--primary-color);
+  text-decoration: none;
   z-index: 1001;
-  letter-spacing: -0.5px;
 }
+
+/* Navigasi Utama */
 .nav-links {
   display: flex;
-  gap: 2rem; /* Jarak sedikit lebih besar */
+  gap: 2.5rem; /* Jarak antar link lebih besar */
+  position: absolute; /* Posisikan di tengah navbar */
+  left: 50%;
+  transform: translateX(-50%);
 }
 .nav-links a {
-  position: relative; /* Diperlukan untuk garis bawah */
+  position: relative;
   color: var(--text-light);
   font-weight: 500;
   font-size: 1rem;
-  padding-bottom: 5px; /* Jarak untuk garis bawah */
+  padding: 0.5rem 0;
+  text-decoration: none;
   transition: color 0.3s ease;
 }
-/* Efek garis bawah (underline) */
+/* Efek garis bawah yang elegan */
 .nav-links a::after {
   content: '';
   position: absolute;
   width: 0;
   height: 2px;
   bottom: 0;
-  left: 0;
-  background-color: var(--secondary-color);
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--primary-color);
   transition: width 0.3s ease;
 }
 .nav-links a:hover,
@@ -114,50 +121,51 @@ body { font-family: 'Poppins', sans-serif; } */
 }
 .nav-links a:hover::after,
 .nav-links a.router-link-exact-active::after {
-  width: 100%; /* Tampilkan garis bawah saat hover atau aktif */
+  width: 100%;
 }
 
-/* Styling untuk tombol keranjang dan ikon SVG */
+/* Tombol Aksi (User & Keranjang) */
 .nav-actions {
-  z-index: 1001;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
-.cart-button {
+.action-button {
   background: none;
   border: none;
-  font-size: 1.5rem;
   position: relative;
+  cursor: pointer;
   width: 44px;
   height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  color: var(--text-light);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
-.cart-button:hover {
-  background-color: rgba(218, 165, 180, 0.1);
-  transform: scale(1.05);
-}
-.cart-button svg {
+.action-button:hover {
+  background-color: rgba(0,0,0,0.05);
   color: var(--primary-color);
 }
 .cart-badge {
   position: absolute;
-  top: 2px;
-  right: 0px;
+  top: 5px;
+  right: 2px;
   background-color: var(--secondary-color);
   color: white;
   border-radius: 50%;
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 0.7rem;
   font-weight: 600;
-  border: 2px solid white; /* Membuat badge terlihat lebih menonjol */
+  border: 1px solid white;
 }
 
+/* Tombol Hamburger */
 .hamburger-menu {
   display: none;
   font-size: 1.8rem;
@@ -172,7 +180,8 @@ body { font-family: 'Poppins', sans-serif; } */
 /* === BAGIAN RESPONSIVE === */
 @media (max-width: 768px) {
   .nav-links {
-    display: none;
+    /* Sembunyikan menu di mobile, dan ubah menjadi fullscreen */
+    display: none; 
     position: fixed;
     top: 0;
     left: 0;
@@ -184,10 +193,11 @@ body { font-family: 'Poppins', sans-serif; } */
     justify-content: center;
     align-items: center;
     gap: 2.5rem;
+    transform: translateX(0); /* Reset transform */
   }
 
   .nav-links.mobile-nav-active {
-    display: flex;
+    display: flex; /* Tampilkan saat state-nya aktif */
   }
 
   .nav-links a {
@@ -196,6 +206,29 @@ body { font-family: 'Poppins', sans-serif; } */
   
   .hamburger-menu {
     display: block;
+    z-index: 1002; /* Pastikan di atas menu mobile */
+  }
+  
+  .nav-actions {
+    /* Pindahkan ke paling kanan setelah logo di mobile */
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  /* Sembunyikan tombol hamburger saat menu terbuka agar bisa menampilkan tombol 'X' */
+  .hamburger-menu {
+    order: 3; /* Pindahkan hamburger ke paling kanan */
+  }
+  .nav-actions {
+    order: 2;
+  }
+  .nav-logo {
+    order: 1;
+  }
+  .nav-container {
+    justify-content: space-between;
   }
 }
 </style>

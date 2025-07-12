@@ -1,39 +1,19 @@
-# 🌐 Aplikasi Belajar Bahasa Asing
-Aplikasi ini dirancang untuk membantu pengguna mempelajari berbagai bahasa asing secara menyenangkan dan interaktif. Proyek ini dibangun menggunakan Vue.js dan mencakup berbagai fitur seperti forum diskusi, kuis harian, latihan mendengarkan, serta pelacakan pencapaian belajar.
+Bucket Mart - UAS Project
+Ini adalah proyek Vue.js untuk tugas akhir UAS yang mensimulasikan sebuah toko online fiktif bernama "Bucket Mart".
 
----
-
-## 🚀 Fitur Utama
-# 🏠 Beranda
-Tampilan awal yang ramah pengguna dan informatif, menampilkan ringkasan aktivitas belajar dan navigasi ke seluruh fitur aplikasi.
-
-# 🗣️ Forum Bahasa
-Fitur komunitas di mana pengguna bisa berdiskusi, bertanya, dan berbagi tips dengan sesama pelajar bahasa.
-
-# 🧠 Kuis Harian
-Kuis cepat setiap hari untuk melatih pemahaman kosa kata dan tata bahasa.
-
-# 🎧 Latihan Mendengarkan
-Materi audio interaktif untuk meningkatkan kemampuan menyimak dan pengucapan.
-
-# 📘 Modul Dasar
-Kumpulan materi pelajaran bahasa asing untuk tingkat pemula, mencakup tata bahasa dasar, kosa kata, dan contoh percakapan.
-
-# 🏆 Pencapaian
-Sistem penghargaan untuk memotivasi pengguna, mencatat progres belajar dan pencapaian personal.
-
-# 🌍 Pilih Bahasa
-Pengguna dapat memilih bahasa yang ingin dipelajari, seperti Jepang, Inggris, Korea, dll.
-
-# 👤 Profil
-Halaman pribadi pengguna yang menampilkan informasi akun, kemajuan belajar, dan opsi pengaturan.
-
----
-
-## 👩‍🎓 Informasi Mahasiswa
-
-- **Nama:** Sri Adinda  
-- **NPM:** 233510515  
-- **Kelas:** 4F  
-- **Program Studi:** Teknik Informatika
+Fitur
+Penjelajahan Produk: Lihat daftar produk dengan filter berdasarkan kategori dan pencarian.
+Manajemen Keranjang: Tambah, hapus, dan perbarui kuantitas item dalam keranjang belanja.
+State Management: Menggunakan Pinia untuk mengelola state produk, keranjang, dan autentikasi.
+Routing: Menggunakan Vue Router dengan navigation guard untuk rute yang memerlukan login.
+Konsumsi API: Mengambil data dari server API tiruan (json-server).
+Autentikasi Pengguna: Sistem login sederhana untuk melihat halaman riwayat pesanan.
+Unit Testing: Tes untuk komponen dan store menggunakan Vitest.
+Desain Responsif: Tampilan yang dapat beradaptasi di berbagai ukuran layar.
+Cara Menjalankan
+1. Prasyarat
+Node.js (v18 atau lebih tinggi)
+NPM / Yarn / PNPM
+2. Instalasi
+Klona repositori dan pasang dependensi:
 

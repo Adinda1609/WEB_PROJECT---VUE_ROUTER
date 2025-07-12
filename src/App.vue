@@ -1,74 +1,41 @@
 <template>
-  <div class="app-container">
-    <sidebar />
-    <main class="content">
-      <div class="content-scrollable">
-        <router-view />
-      </div>
-    </main>
+  <div id="app">
+    <Navbar />
+    <router-view />
+    <Footer v-if="showFooter" /> <CartModal />
+    <Notification />
   </div>
 </template>
 
-<script>
-import sidebar from "./components/sidebar.vue";
+<script setup>
+import { computed } from 'vue'; // Import computed
+import { useRoute } from 'vue-router'; // Import useRoute
 
-export default {
-  name: 'App',
-  components: { 
-    sidebar 
-  }
-}
+import Navbar from '@/components/layout/Navbar.vue'
+import Footer from '@/components/layout/Footer.vue'
+import CartModal from '@/components/cart/CartModal.vue'
+import Notification from '@/components/ui/Notification.vue'
+
+// Inisialisasi useRoute
+const route = useRoute();
+
+const showFooter = computed(() => {
+  const routesWithoutFooter = ['login', 'register']; 
+
+  return !routesWithoutFooter.includes(route.name);
+});
 </script>
 
 <style>
-body {
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-}
-
-.app-container {
+#app {
   display: flex;
-  min-height: 100vh;
+  flex-direction: column;
+  min-height: 100vh; /* Memastikan app mengisi tinggi viewport minimum */
 }
-
-.sidebar {
-  position: fixed;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 260px;
-  z-index: 100;
+.router-view-container { /* Jika Anda membungkus router-view */
+    flex-grow: 1;
 }
-
-.content {
-  margin-left: 260px; 
-  width: calc(100% - 260px);
-  min-height: 100vh;
-  position: relative;
-  background-color: #f7f9fc;
-}
-
-.content-scrollable {
-  padding: 30px;
-  min-height: 100vh;
-  box-sizing: border-box;
-}
-
-@media (max-width: 768px) {
-  .sidebar {
-    position: relative;
-    width: 100%;
-    height: auto;
-  }
-  
-  .content {
-    margin-left: 0;
-    width: 100%;
-  }
-  
-  .content-scrollable {
-    padding: 20px;
-  }
+#app > *:nth-child(2) { /* Ini menargetkan router-view jika posisinya kedua */
+    flex-grow: 1;
 }
 </style>

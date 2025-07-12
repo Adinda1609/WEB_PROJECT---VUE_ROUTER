@@ -1,30 +1,81 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Beranda from '../menu/Beranda.vue'
-import ForumBahasa from '../menu/ForumBahasa.vue'
-import KuisHarian from '../menu/KuisHarian.vue'
-import LatihanMendengarkan from '../menu/LatihanMendengarkan.vue'
-import ModulDasar from '../menu/ModulDasar.vue'
-import Pencapaian from '../menu/Pencapaian.vue'
-import Percakapan from '../menu/Percakapan.vue'
-import PilihBahasa from '../menu/PilihBahasa.vue'
-import Profil from '../menu/Profil.vue'
+import { useAuthStore } from '@/stores/auth'
 
 const routes = [
-    { path: '/', component: Beranda},
-    { path: '/forumbahasa', component: ForumBahasa},
-    { path: '/kuisharian', component: KuisHarian},
-    { path: '/latihanmendengarkan', component: LatihanMendengarkan},
-    { path: '/moduldasar', component: ModulDasar},
-    { path: '/pencapaian', component: Pencapaian},
-    { path: '/percakapan', component: Percakapan},
-    { path: '/pilihbahasa', component: PilihBahasa},
-    { path: '/profil', component: Profil}
   
+  {
+    path: '/',
+    name: 'home',
+    component: () => import('@/views/HomeView.vue'),
+    meta: { title: 'Home | Bucket Mart' }
+  },
+  {
+    path: '/products',
+    name: 'products',
+    component: () => import('@/views/ProductsView.vue'),
+    meta: { title: 'Products | Bucket Mart' }
+  },
+  {
+    path: '/about',
+    name: 'about',
+    component: () => import('@/views/AboutView.vue'),
+    meta: { title: 'About Us | Bucket Mart' }
+  },
+  {
+    path: '/cart',
+    name: 'cart',
+    component: () => import('@/views/CartView.vue'),
+    meta: { 
+      title: 'Your Cart | Bucket Mart'
+    }
+  },
+  // AKHIR BAGIAN YANG HILANG
+
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import('@/views/LoginView.vue'),
+    meta: { title: 'Login | Bucket Mart' }
+  },
+  {
+    path: '/register',
+    name: 'register',
+    component: () => import('@/views/RegisterView.vue'),
+    meta: { title: 'Register | Bucket Mart' }
+  },
+  {
+    path: '/order-history',
+    name: 'orders',
+    component: () => import('@/views/OrderHistoryView.vue'),
+    meta: { 
+      title: 'Order History | Bucket Mart',
+      requiresAuth: true
+    }
+  }
 ]
 
 const router = createRouter({
   history: createWebHistory(),
-  routes
+  routes, // Pastikan variabel ini berisi semua rute di atas
+  scrollBehavior(to, from, savedPosition) {
+    return savedPosition || { top: 0 }
+  }
+})
+
+router.beforeEach((to, from, next) => {
+  document.title = to.meta.title || 'Bucket Mart'
+  
+  if (to.meta.requiresAuth) {
+    // Pastikan Pinia sudah siap sebelum memanggil store
+    const authStore = useAuthStore()
+    if (!authStore.isAuthenticated) {
+      next({ name: 'login' })
+    } else {
+      next()
+    }
+  } else {
+    next()
+  }
 })
 
 export default router
